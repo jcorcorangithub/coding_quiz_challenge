@@ -12,33 +12,22 @@ let startButton = document.querySelector("button");
 let timerElement = document.getElementById("timer");
 let questions = document.querySelector("p");
 
-let arrayOfQuestions = ["question1","q2","q3","q4","q5","q6","q7","q8"];
+let arrayOfQuestions = ["q1","q2","q3","q4","q5"];
+let arrayOfChoices1 = ["c1","c2","c3","c4","c5"];
+let arrayOfChoices2 = ["c1","c2","c3","c4","c5"];
+let arrayOfChoices3 = ["c1","c2","c3","c4","c5"];
+let arrayOfChoices4 = ["c1","c2","c3","c4","c5"];
 
 let uList = document.querySelector("ul");
 let li1 = document.createElement("li");
 let li2 = document.createElement("li");
 let li3 = document.createElement("li");
 let li4 = document.createElement("li");
-
-
+let li5 = document.createElement("button");
+li5.textContent = "submit";
 
 function questionFunction(){
-    for(i = 0; i < arrayOfQuestions.length; i++){
-        questions.textContent = arrayOfQuestions[i];
-        console.log(i);
-
-        uList.appendChild(li1);
-        uList.appendChild(li2);
-        uList.appendChild(li3);
-        uList.appendChild(li4);
-        
-        // these would also iterate 
-        li1.textContent = arrayOfQuestions[i]; 
-        li2.textContent = arrayOfQuestions[i];
-        li3.textContent = arrayOfQuestions[i];
-        li4.textContent = arrayOfQuestions[i];
-
-    }
+    
     // this will display question after question 
 
     //for each question:
@@ -78,7 +67,38 @@ startButton.addEventListener("click", function(){
     timerElement.style.visibility="visible";
     startButton.style.display= "none";
     countdown(); 
-    questionFunction();
+    //questionFunction();
+    
+    uList.appendChild(li1);
+    uList.appendChild(li2);
+    uList.appendChild(li3);
+    uList.appendChild(li4);
+    uList.appendChild(li5);
+    li5.disabled = true; // this keeps the submit button disabled until an answer is chosen
+    function change(a){ // this function executes when one of the answers is selected
+        a.style.borderStyle= "solid", borderColor= "black";
+        li5.disabled = false;
+    }
+    
+    
+    for(i = 0; i < arrayOfQuestions.length; i++){
+    
+    questions.textContent = arrayOfQuestions[i];
+
+    li1.textContent = arrayOfChoices1[i];
+    li1.addEventListener("click",function(){change(li1)});
+    li2.textContent = arrayOfChoices2[i];
+    li2.addEventListener("click",function(){change(li2)});        
+    li3.textContent = arrayOfChoices3[i];
+    li3.addEventListener("click",function(){change(li3)}); 
+    li4.textContent = arrayOfChoices4[i];
+    li4.addEventListener("click",function(){change(li4)}); 
+
+        
+
+
+    }
+
     
     
 });
