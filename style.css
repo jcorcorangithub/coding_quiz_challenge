@@ -1,0 +1,17 @@
+#timer {
+    text-align: center;
+}
+h1 {
+    padding-right: 10%;
+}
+
+#timer {
+    text-align: right;
+    font-size: larger;
+    padding-right: 20px;
+    visibility: hidden; 
+}
+
+div {
+    text-align: center;
+}
