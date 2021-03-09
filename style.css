@@ -9,7 +9,12 @@ h1 {
     text-align: right;
     font-size: larger;
     padding-right: 20px;
-    /* visibility: hidden;  */
+    visibility: hidden; 
+}
+
+p {
+    text-align: center;
+    padding: 10px;
 }
 
 div {
