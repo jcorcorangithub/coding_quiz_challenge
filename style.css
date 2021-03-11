@@ -16,6 +16,9 @@ p {
     text-align: center;
     padding: 10px;
 }
+ul {
+    list-style-type: none;
+}
 
 div {
     text-align: center;
