@@ -21,8 +21,8 @@ let li1 = document.createElement("li");
 let li2 = document.createElement("li");
 let li3 = document.createElement("li");
 let li4 = document.createElement("li");
-let submtButton = document.createElement("button");
-submtButton.textContent = "submit answer";
+let submitButton = document.createElement("button");
+submitButton.textContent = "submit answer";
 let li6 = document.createElement("li");
 let scoreTracker = 0;
 let timeLeft = 0;
@@ -53,32 +53,11 @@ startButton.addEventListener("click", function(){
     uList.appendChild(li2);
     uList.appendChild(li3);
     uList.appendChild(li4);
-    uList.appendChild(submtButton);
-    submtButton.disabled = true; // this keeps the submit button disabled until an answer is chosen
-    
-    
-    let i = 0;
-    while(i < arrayOfQuestions.length){
-        qAndADisplay(i);
-        i++;
-    }
-});
+    uList.appendChild(submitButton);
+    submitButton.disabled = true; // this keeps the submit button disabled until an answer is chosen
 
-    let chosenAnswer;
-
-    function change(a){ // this function executes when one of the answers is selected
-        if(chosenAnswer!=null){// if a second option is selected, then that one will be what is counted
-            chosenAnswer.style.backgroundColor = "white";
-        }
-        a.style.backgroundColor= "gray";
-        submtButton.disabled = false;
-        chosenAnswer = a;
-        console.log(chosenAnswer);
-    }
-
-    function qAndADisplay(i){
-
-    questions.textContent = arrayOfQuestions[i];
+    // need a way to iterate to next question after submit button is clicked 
+        questions.textContent = arrayOfQuestions[i];
                 
         li1.textContent = arrayOfFirstChoices[i];
                 li1.addEventListener("click",function(){change(li1)});
@@ -88,19 +67,53 @@ startButton.addEventListener("click", function(){
                 li3.addEventListener("click",function(){change(li3)}); 
         li4.textContent = arrayOfFourthChoices[i];
                 li4.addEventListener("click",function(){change(li4)}); 
+    
         
         
-                submtButton.onclick = function() {
-                if(chosenAnswer.textContent!==arrayOfCorrectAnswers[i]){
-                    uList.appendChild(li6).textContent = "wrong answer: minus 3 seconds from timer";
-                    li6.style.color = "red";
-                    timeLeft = timeLeft-3;
-                } else {
-                    uList.appendChild(li6).textContent = "Correct!";
-                    li6.style.color = "green";
-                    scoreTracker++;
-                }
-                submtButton.disabled = true;
-                chosenAnswer = null;
-            } 
+                submitButton.onclick = function() {
+                    if(chosenAnswer.textContent!==arrayOfCorrectAnswers[i]){
+                        uList.appendChild(li6).textContent = "wrong answer: minus 3 seconds from timer";
+                        li6.style.color = "red";
+                        timeLeft = timeLeft-3;
+                        submitButton.disabled = true;
+                        //chosenAnswer = null;
+                    } else {
+                        uList.appendChild(li6).textContent = "Correct!";
+                        li6.style.color = "green";
+                        scoreTracker++;
+                        submitButton.disabled = true;
+                        //chosenAnswer = null;
+                    }
+                } 
+    
+    
+});
+
+    let chosenAnswer;
+
+    function change(a){ // this function executes when one of the answers is selected
+        if(chosenAnswer!=null){// if a second option is selected, then that one will be what is counted
+            chosenAnswer.style.backgroundColor = "white";
+        }
+        a.style.backgroundColor= "gray";
+        submitButton.disabled = false;
+        chosenAnswer = a;
+        console.log(chosenAnswer);
     }
+
+    // function qAndADisplay(i){
+
+    // questions.textContent = arrayOfQuestions[i];
+                
+    //     li1.textContent = arrayOfFirstChoices[i];
+    //             li1.addEventListener("click",function(){change(li1)});
+    //     li2.textContent = arrayOfSecondChoices[i];
+    //             li2.addEventListener("click",function(){change(li2)});        
+    //     li3.textContent = arrayOfThirdChoices[i];
+    //             li3.addEventListener("click",function(){change(li3)}); 
+    //     li4.textContent = arrayOfFourthChoices[i];
+    //             li4.addEventListener("click",function(){change(li4)}); 
+        
+        
+                
+    
