@@ -3,6 +3,7 @@
 //      input box is displayed 
 //      high scores are displayed
 
+let mainSesction = document.querySelector("main");
 let startButton = document.querySelector("button");
 let timerElement = document.getElementById("timer");
 let questions = document.querySelector("p");
@@ -41,40 +42,45 @@ startButton.addEventListener("click", function(){
 
     // need a way to iterate to next question after submit button is clicked 
     
-        let i = 0;
+    let i = 0;
     
     qAndaChanger(i);
+
+    // this function appends an li which acts a display message telling the user correct or incorrect
+    // that message disappers after 1 second
+    // then disables the submit button 
+    // prepares the content for the next question
 
     submitButton.onclick = function() {
         if(chosenAnswer.textContent!==arrayOfCorrectAnswers[i]){
             uList.appendChild(li6).textContent = "wrong answer: minus 3 seconds from timer";
             li6.style.color = "red";
+            setTimeout(function(){
+                li6.innerHTML="";
+            },1000);
             timeLeft = timeLeft-3;
             submitButton.disabled = true;
             i++;
             chosenAnswer.style.backgroundColor = "white";
             qAndaChanger(i);
-            //chosenAnswer = null;
         } else {
             uList.appendChild(li6).textContent = "Correct!";
             li6.style.color = "green";
+            setTimeout(function(){
+                li6.innerHTML="";
+            },1000);
             scoreTracker++;
             submitButton.disabled = true;
-            //chosenAnswer = null;
             i++;
             chosenAnswer.style.backgroundColor = "white";
             qAndaChanger(i);
         }
     }
-
-        // questions.textContent = "Game Over"
-        
-
 });
 
     let timeLeft = 0;
     function countdown() {
-        timeLeft = 5;
+        timeLeft = 30;
         let timeInterval = setInterval(function(){
             if(timeLeft > 1){
                 timerElement.textContent = timeLeft;
@@ -84,12 +90,21 @@ startButton.addEventListener("click", function(){
                 timeLeft--;
             } else {
                 timerElement.textContent = "time is up";
-                clearInterval(timeInterval);  
+                setTimeout(function(){
+                    timerElement.innerHTML="";
+                },1000); 
+                clearInterval(timeInterval);
+                
+                mainSesction.removeChild(document.querySelector("p"));
+                mainSesction.removeChild(document.querySelector("ul"));
             }
         },1000);
     }
 
     function qAndaChanger(i){
+        if(i>=arrayOfQuestions.length){
+            timeLeft=1;
+        }
         questions.textContent = arrayOfQuestions[i];
 
         li1.textContent = arrayOfFirstChoices[i];
