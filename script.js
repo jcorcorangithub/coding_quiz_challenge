@@ -83,7 +83,7 @@ startButton.addEventListener("click", function(){
 
     
     function countdown() {
-        timeLeft = 2;
+        timeLeft = 30;
         let timeInterval = setInterval(function(){
             if(timeLeft > 1){
                 timerElement.textContent = timeLeft;
@@ -92,24 +92,25 @@ startButton.addEventListener("click", function(){
                 timerElement.textContent = timeLeft;
                 timeLeft--;
             } else {
-                timerElement.textContent = "time is up";
-                setTimeout(function(){
-                    timerElement.innerHTML="";
-                },3000); 
+                timerElement.textContent = "Game Over";
+                // setTimeout(function(){
+                //     timerElement.innerHTML="";
+                // },3000); 
                 clearInterval(timeInterval);
                 
-                mainSection.removeChild(document.querySelector("p"));
+                //mainSection.removeChild(document.querySelector("p"));
+                questions.textContent = "Your score is "+scoreTracker;
                 mainSection.removeChild(document.querySelector("ul"));
                 
 
                 //might want to do this on html and "hide" it using visibility hidden until this point
-                let inputForm = document.querySelector("form");
-                let initials = document.createElement("label");
-                initials.textContent = "enter initials";
-                let initialsInput = document.createElement("input");
+                // let inputForm = document.querySelector("form");
+                // let initials = document.createElement("label");
+                // initials.textContent = "enter initials";
+                // let initialsInput = document.createElement("input");
 
-                inputForm.appendChild(initials);
-                inputForm.appendChild(initialsInput);
+                // inputForm.appendChild(initials);
+                // inputForm.appendChild(initialsInput);
             }
         },1000);
     }
