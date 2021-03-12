@@ -39,8 +39,6 @@ startButton.addEventListener("click", function(){
     uList.appendChild(li4);
     uList.appendChild(submitButton);
     submitButton.disabled = true; // this keeps the submit button disabled until an answer is chosen
-
-    // need a way to iterate to next question after submit button is clicked 
     
     let i = 0;
     
