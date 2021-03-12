@@ -3,7 +3,7 @@
 //      input box is displayed 
 //      high scores are displayed
 
-let mainSesction = document.querySelector("main");
+let mainSection = document.querySelector("main");
 let startButton = document.querySelector("button");
 let timerElement = document.getElementById("timer");
 let questions = document.querySelector("p");
@@ -25,6 +25,7 @@ let submitButton = document.createElement("button");
 submitButton.textContent = "submit answer";
 let li6 = document.createElement("li");
 let scoreTracker = 0;
+let timeLeft;
 
 
 
@@ -76,9 +77,13 @@ startButton.addEventListener("click", function(){
     }
 });
 
-    let timeLeft = 0;
+
+    
+
+
+    
     function countdown() {
-        timeLeft = 30;
+        timeLeft = 2;
         let timeInterval = setInterval(function(){
             if(timeLeft > 1){
                 timerElement.textContent = timeLeft;
@@ -90,11 +95,21 @@ startButton.addEventListener("click", function(){
                 timerElement.textContent = "time is up";
                 setTimeout(function(){
                     timerElement.innerHTML="";
-                },1000); 
+                },3000); 
                 clearInterval(timeInterval);
                 
-                mainSesction.removeChild(document.querySelector("p"));
-                mainSesction.removeChild(document.querySelector("ul"));
+                mainSection.removeChild(document.querySelector("p"));
+                mainSection.removeChild(document.querySelector("ul"));
+                
+
+                //might want to do this on html and "hide" it using visibility hidden until this point
+                let inputForm = document.querySelector("form");
+                let initials = document.createElement("label");
+                initials.textContent = "enter initials";
+                let initialsInput = document.createElement("input");
+
+                inputForm.appendChild(initials);
+                inputForm.appendChild(initialsInput);
             }
         },1000);
     }
