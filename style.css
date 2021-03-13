@@ -23,3 +23,7 @@ ul {
 div {
     text-align: center;
 }
+
+form {
+    visibility: hidden;
+}

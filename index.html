@@ -18,9 +18,16 @@
         <ul></ul>
         <div><button type="button">Start</button></div>
         <form>
-            <label for="fname">Enter Initials:</label><br>
+            <label for="initials">Enter Initials and save your score</label><br>
             <input type="text" id="initials" name="initials"><br>
+            <input type="submit" value="save">
         </form>
+
+        <div class = "card">
+            <h2>High Scores</h2>
+            <p>Top Scorers: <span id="initials"></span></p>
+            <p>Score: <span id="score"></span></p>
+        <div>
     </main>
 
     <script src = "script.js"></script>

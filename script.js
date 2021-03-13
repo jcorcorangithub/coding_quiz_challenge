@@ -1,12 +1,8 @@
-// when timer runs out:
-//      a message with the score and asking for initials is displayed
-//      input box is displayed 
-//      high scores are displayed
-
 let mainSection = document.querySelector("main");
 let startButton = document.querySelector("button");
 let timerElement = document.getElementById("timer");
 let questions = document.querySelector("p");
+let inputForm = document.querySelector("form");
 
 
 let arrayOfQuestions =      ["q1",  "q2",   "q3",   "q4",   "q5"];
@@ -93,24 +89,22 @@ startButton.addEventListener("click", function(){
                 timeLeft--;
             } else {
                 timerElement.textContent = "Game Over";
-                // setTimeout(function(){
-                //     timerElement.innerHTML="";
-                // },3000); 
                 clearInterval(timeInterval);
                 
-                //mainSection.removeChild(document.querySelector("p"));
                 questions.textContent = "Your score is "+scoreTracker;
                 mainSection.removeChild(document.querySelector("ul"));
                 
+                inputForm.style.visibility = "visible";
+                
+                let userInitials = document.getElementById("initials");
+                let userInfo = {
+                    userInitials: userInitials.nodeValue.trim(),
+                    userScore: scoreTracker,
+                }
+                localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-                //might want to do this on html and "hide" it using visibility hidden until this point
-                // let inputForm = document.querySelector("form");
-                // let initials = document.createElement("label");
-                // initials.textContent = "enter initials";
-                // let initialsInput = document.createElement("input");
+               
 
-                // inputForm.appendChild(initials);
-                // inputForm.appendChild(initialsInput);
             }
         },1000);
     }
