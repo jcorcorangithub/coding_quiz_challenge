@@ -3,14 +3,56 @@ let startButton = document.querySelector("button");
 let timerElement = document.getElementById("timer");
 let questions = document.querySelector("p");
 let inputForm = document.querySelector("form");
+let topScores = document.querySelector("card");
+
+//d  c  c  a  c
+let arrayOfQuestions =      
+["Inside which HTML element do we put the JavaScript?",  
+"What is the correct JavaScript syntax to change the content of the HTML element below?",   
+"Where is the correct place to insert a JavaScript?",   
+"What is the correct syntax for referring to an external script called 'xxx.js'?",   
+"How do you write 'Hello World' in an alert box?"];
 
 
-let arrayOfQuestions =      ["q1",  "q2",   "q3",   "q4",   "q5"];
-let arrayOfFirstChoices =   ["1c1", "1c2",  "1c3",  "1c4",  "1c5"];
-let arrayOfSecondChoices =  ["2c1", "2c2",  "2c3",  "2c4",  "2c5"];
-let arrayOfThirdChoices =   ["3c1", "3c2",  "3c3",  "3c4",  "3c5"];
-let arrayOfFourthChoices =  ["4c1", "4c2",  "4c3",  "4c4",  "4c5"];
-let arrayOfCorrectAnswers = ["2c1", "2c2",  "4c3",  "1c4",  "3c5"];
+let arrayOfFirstChoices =   
+["<javascript>", 
+"#demo.innerHTML = 'Hello World!'';",  
+"The <head> section",  
+"<script src='xxx.js'>",  
+"alert('Hello World');"];
+
+
+let arrayOfSecondChoices =  
+["<scripting>", 
+"document.getElementByName('p').innerHTML = 'Hello World!'';",  
+"The <body> section",  
+"<script href='xxx.js'>",  
+"msg('Hello World');"];
+
+
+let arrayOfThirdChoices =   
+["<js>", 
+"document.getElementById('demo').innerHTML = 'Hello World!';",  
+"Both the <head> section and the <body> section are correct",  
+"<script name='xxx.js'>",  
+"alertBox('Hello World');"];
+
+
+let arrayOfFourthChoices =  
+["<script>", 
+"document.getElement('p').innerHTML = 'Hello World!';",  
+"The <body> section",  
+"<script name='xxx.js'>",  
+"msgBox('Hello World');"];
+
+
+let arrayOfCorrectAnswers = 
+["<script>", 
+"document.getElementById('demo').innerHTML = 'Hello World!';",  
+"Both the <head> section and the <body> section are correct",  
+"<script src='xxx.js'>",  
+"alert('Hello World');"];
+
 
 let uList = document.querySelector("ul");
 let li1 = document.createElement("li");
@@ -24,7 +66,7 @@ let scoreTracker = 0;
 let timeLeft;
 
 
-
+//when user clicks start the structure for the questions and answers
 startButton.addEventListener("click", function(){
     timerElement.style.visibility="visible";
     startButton.style.display= "none";
@@ -41,7 +83,7 @@ startButton.addEventListener("click", function(){
     
     qAndaChanger(i);
 
-    // this function appends an li which acts a display message telling the user correct or incorrect
+    // the function below appends an li which acts a display message telling the user correct or incorrect
     // that message disappers after 1 second
     // then disables the submit button 
     // prepares the content for the next question
@@ -52,7 +94,7 @@ startButton.addEventListener("click", function(){
             li6.style.color = "red";
             setTimeout(function(){
                 li6.innerHTML="";
-            },1000);
+            },1500);
             timeLeft = timeLeft-3;
             submitButton.disabled = true;
             i++;
@@ -63,7 +105,7 @@ startButton.addEventListener("click", function(){
             li6.style.color = "green";
             setTimeout(function(){
                 li6.innerHTML="";
-            },1000);
+            },1500);
             scoreTracker++;
             submitButton.disabled = true;
             i++;
@@ -77,7 +119,7 @@ startButton.addEventListener("click", function(){
     
 
 
-    
+    // this acts as the timer function and clears some of the page as to only display the input box and the list of high scores 
     function countdown() {
         timeLeft = 30;
         let timeInterval = setInterval(function(){
@@ -95,13 +137,20 @@ startButton.addEventListener("click", function(){
                 mainSection.removeChild(document.querySelector("ul"));
                 
                 inputForm.style.visibility = "visible";
-                
+
+                //right now the program automatically takes in the text from the input box and the score without the user having to click the save button
                 let userInitials = document.getElementById("initials");
                 let userInfo = {
-                    userInitials: userInitials.nodeValue.trim(),
+                    userInitials: userInitials.value.trim(),
                     userScore: scoreTracker,
                 }
-                localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+                //i need this to only work when the submit button is clicked
+                let saveLastHighScore = localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+                //this variable is meant to be added onto the list of previous scores
+                let LastHighScore = JSON.parse(localStorage.userInfo);
+                
 
                
 
