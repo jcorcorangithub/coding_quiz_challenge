@@ -8,4 +8,4 @@ https://github.com/jcorcorangithub/coding_quiz_challenge
 link to github repo:
 https://jcorcorangithub.github.io/coding_quiz_challenge/
 
-![alt text](screenshot)
+![alt text](screenshot.png)
