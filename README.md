@@ -10,6 +10,7 @@ link to application:
 https://jcorcorangithub.github.io/coding_quiz_challenge/
 
 ![alt text](screenshot.png)
+![alt text](screenshot1.png)
 
 ## Technologies
 HTML, CSS, JavaScript
